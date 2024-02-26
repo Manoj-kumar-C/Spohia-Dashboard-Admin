@@ -85,7 +85,7 @@ export const Layout = (props) => {
                 sx={{ color: '#15B79E' }}
                 target="_blank"
               >
-                Spam Tracker
+                Ai Saas Dashboard
               </Box>
             </Typography>
             <Typography
@@ -93,7 +93,7 @@ export const Layout = (props) => {
               sx={{ mb: 3 }}
               variant="subtitle1"
             >
-              A professional Cyber Security Spam Alert System 
+              A professional Ai Saas System
             </Typography>
             <img
               alt=""
