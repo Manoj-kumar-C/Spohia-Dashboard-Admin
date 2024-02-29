@@ -119,7 +119,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Reports | Spam Alert System
+          CRUD Board | Ai Saas
         </title>
       </Head>
       <Box

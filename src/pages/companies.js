@@ -49,7 +49,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Companies | Spam Alert System</title>
+        <title>Video List | Spam Alert System</title>
       </Head>
       <Box
         component="main"

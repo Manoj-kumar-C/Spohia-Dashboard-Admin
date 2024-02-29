@@ -59,7 +59,7 @@ const Page = () => {
   <>
     <Head>
       <title>
-        Spam Alert System
+        Sophia Ai Saas Dashboard
       </title>
     </Head>
     <Box
