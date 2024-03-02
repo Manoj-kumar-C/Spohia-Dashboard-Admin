@@ -2,6 +2,7 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc } from 'fir
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
+  // Your Firebase config here
   apiKey: "AIzaSyAj2ZbPsNaFY0fV_BvG8FXI20WOSj1HAec",
   authDomain: "video-ap-3e5fe.firebaseapp.com",
   projectId: "video-ap-3e5fe",
