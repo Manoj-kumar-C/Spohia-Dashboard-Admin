@@ -56,7 +56,7 @@ export const OverviewBudget = (props) => {
               color="text.secondary"
               variant="overline"
             >
-              sms Complaints
+              Total Videos in Site
             </Typography>
             <Typography variant="h4">
               {smsCount}
@@ -103,7 +103,7 @@ export const OverviewBudget = (props) => {
               color="text.secondary"
               variant="caption"
             >
-              Since last month
+              
             </Typography>
           </Stack>
         )}

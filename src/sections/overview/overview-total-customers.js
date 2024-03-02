@@ -56,7 +56,7 @@ export const OverviewTotalCustomers = (props) => {
               color="text.secondary"
               variant="overline"
             >
-              Email Complaints
+              Videos Uploaded
             </Typography>
             <Typography variant="h4">
               {emailCount}
@@ -103,7 +103,7 @@ export const OverviewTotalCustomers = (props) => {
               color="text.secondary"
               variant="caption"
             >
-              Since last month
+              
             </Typography>
           </Stack>
         )}
