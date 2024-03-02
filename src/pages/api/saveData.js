@@ -1,21 +1,29 @@
-// pages/api/saveData.js
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
 
-import fs from 'fs';
-import path from 'path';
+const firebaseConfig = {
+  apiKey: "AIzaSyAj2ZbPsNaFY0fV_BvG8FXI20WOSj1HAec",
+  authDomain: "video-ap-3e5fe.firebaseapp.com",
+  projectId: "video-ap-3e5fe",
+  storageBucket: "video-ap-3e5fe.appspot.com",
+  messagingSenderId: "9675704832",
+  appId: "1:9675704832:web:ffc7a76d944fc78584e6e5",
+  measurementId: "G-WNDPESZV29"
+};
 
-export default function handler(req, res) {
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const dataFilePath = path.join(process.cwd(), 'data.json');
     const { formData } = req.body;
     try {
-      let data = [];
-      if (fs.existsSync(dataFilePath)) {
-        data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
-      }
-      const newData = [...data, formData];
-      fs.writeFileSync(dataFilePath, JSON.stringify(newData, null, 2));
+      // Add document to Firestore collection
+      await addDoc(collection(db, 'sophia'), formData);
       res.status(200).json({ success: true });
     } catch (error) {
+      console.error('Error saving data:', error);
       res.status(500).json({ error: 'Error saving data' });
     }
   } else {

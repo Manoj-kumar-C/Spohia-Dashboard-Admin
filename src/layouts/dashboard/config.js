@@ -20,7 +20,7 @@ export const items = [
   },
   {
     title: 'CRUD Board',
-    path: '/customers',
+    path: '/crud-board',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -29,7 +29,7 @@ export const items = [
   },
   {
     title: 'Video List',
-    path: '/companies',
+    path: '/video-list',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
