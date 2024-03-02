@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
@@ -25,6 +25,28 @@ export default async function handler(req, res) {
     } catch (error) {
       console.error('Error saving data:', error);
       res.status(500).json({ error: 'Error saving data' });
+    }
+  } else if (req.method === 'PUT') {
+    const { id, formData } = req.body;
+    try {
+      // Update document in Firestore collection
+      const sophiaRef = doc(db, 'sophia', id);
+      await updateDoc(sophiaRef, formData);
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error('Error updating data:', error);
+      res.status(500).json({ error: 'Error updating data' });
+    }
+  } else if (req.method === 'DELETE') {
+    const { id } = req.body;
+    try {
+      // Delete document from Firestore collection
+      const sophiaRef = doc(db, 'sophia', id);
+      await deleteDoc(sophiaRef);
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error('Error deleting data:', error);
+      res.status(500).json({ error: 'Error deleting data' });
     }
   } else {
     res.status(405).json({ error: 'Method not allowed' });

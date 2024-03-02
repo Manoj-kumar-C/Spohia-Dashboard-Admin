@@ -4,20 +4,21 @@ import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 
 const CrudPage = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', address: '', phone: '' });
+  const [formDataCreate, setFormDataCreate] = useState({ name: '', email: '', address: '', phone: '' });
+  const [formDataUpdate, setFormDataUpdate] = useState({ id: '', name: '', email: '', address: '', phone: '' });
+  const [formDataDelete, setFormDataDelete] = useState({ id: '' });
 
-  const saveData = async () => {
+  const saveData = async (data) => {
     try {
       const response = await fetch('/api/saveData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ formData }),
+        body: JSON.stringify({ formData: data }),
       });
-      const data = await response.json();
-      if (data.success) {
-        setFormData({ name: '', email: '', address: '', phone: '' });
+      const responseData = await response.json();
+      if (responseData.success) {
         alert('Data saved successfully');
       } else {
         alert('Failed to save data');
@@ -28,9 +29,76 @@ const CrudPage = () => {
     }
   };
 
-  const handleInputChange = (e) => {
+  const updateData = async (data) => {
+    try {
+      const response = await fetch('/api/updateData', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ formData: data }),
+      });
+      const responseData = await response.json();
+      if (responseData.success) {
+        alert('Data updated successfully');
+      } else {
+        alert('Failed to update data');
+      }
+    } catch (error) {
+      console.error('Error updating data:', error);
+      alert('Failed to update data');
+    }
+  };
+
+  const deleteData = async (data) => {
+    try {
+      const response = await fetch('/api/deleteData', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ formData: data }),
+      });
+      const responseData = await response.json();
+      if (responseData.success) {
+        alert('Data deleted successfully');
+      } else {
+        alert('Failed to delete data');
+      }
+    } catch (error) {
+      console.error('Error deleting data:', error);
+      alert('Failed to delete data');
+    }
+  };
+
+  const handleCreateInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormDataCreate({ ...formDataCreate, [name]: value });
+  };
+
+  const handleUpdateInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormDataUpdate({ ...formDataUpdate, [name]: value });
+  };
+
+  const handleDeleteInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormDataDelete({ ...formDataDelete, [name]: value });
+  };
+
+  const handleCreateSubmit = (e) => {
+    e.preventDefault();
+    saveData(formDataCreate);
+  };
+
+  const handleUpdateSubmit = (e) => {
+    e.preventDefault();
+    updateData(formDataUpdate);
+  };
+
+  const handleDeleteSubmit = (e) => {
+    e.preventDefault();
+    deleteData(formDataDelete);
   };
 
   return (
@@ -41,43 +109,110 @@ const CrudPage = () => {
       <Box component="main" sx={{ flexGrow: 1, py: 8 }}>
         <Container maxWidth="md">
           <Typography variant="h4" gutterBottom>
-            Add New Entry
+            Create Entry
           </Typography>
-          <form>
+          <form onSubmit={handleCreateSubmit}>
+          
             <TextField
               label="Name"
               name="name"
-              value={formData.name}
-              onChange={handleInputChange}
+              value={formDataCreate.name}
+              onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
               label="Email"
               name="email"
-              value={formData.email}
-              onChange={handleInputChange}
+              value={formDataCreate.email}
+              onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
               label="Address"
               name="address"
-              value={formData.address}
-              onChange={handleInputChange}
+              value={formDataCreate.address}
+              onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
               label="Phone"
               name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
+              value={formDataCreate.phone}
+              onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
             />
-            <Button variant="contained" color="primary" onClick={saveData}>
-              Save
+            <Button type="submit" variant="contained" color="primary">
+              Create
+            </Button>
+          </form>
+
+          <Typography variant="h4" gutterBottom>
+            Update Entry
+          </Typography>
+          <form onSubmit={handleUpdateSubmit}>
+            <TextField
+              label="ID"
+              name="id"
+              value={formDataUpdate.id}
+              onChange={handleUpdateInputChange}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Name"
+              name="name"
+              value={formDataUpdate.name}
+              onChange={handleUpdateInputChange}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Email"
+              name="email"
+              value={formDataUpdate.email}
+              onChange={handleUpdateInputChange}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Address"
+              name="address"
+              value={formDataUpdate.address}
+              onChange={handleUpdateInputChange}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Phone"
+              name="phone"
+              value={formDataUpdate.phone}
+              onChange={handleUpdateInputChange}
+              fullWidth
+              margin="normal"
+            />
+            <Button type="submit" variant="contained" color="primary">
+              Update
+            </Button>
+          </form>
+
+          <Typography variant="h4" gutterBottom>
+            Delete Entry
+          </Typography>
+          <form onSubmit={handleDeleteSubmit}>
+            <TextField
+              label="ID"
+              name="id"
+              value={formDataDelete.id}
+              onChange={handleDeleteInputChange}
+              fullWidth
+              margin="normal"
+            />
+            <Button type="submit" variant="contained" color="secondary">
+              Delete
             </Button>
           </form>
         </Container>
