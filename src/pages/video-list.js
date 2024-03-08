@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Box, Container, Stack, Typography, Pagination, SvgIcon, Button } from '@mui/material';
+import { Box, Container, Typography, Grid, Paper, Divider, Stack, Pagination } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { CompanyCard } from 'src/sections/companies/company-card';
-import { CompaniesSearch } from 'src/sections/companies/companies-search';
-import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
-import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
-import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
-
-import firebaseApp from './config/firebaseConfig';
 
 const Page = () => {
   const [companies, setCompanies] = useState([]);
@@ -21,7 +14,7 @@ const Page = () => {
   }, []);
 
   const fetchCompanies = async () => {
-    const db = getFirestore(); // Initialize Firestore
+    const db = getFirestore();
     try {
       const querySnapshot = await getDocs(collection(db, 'sophia'));
       const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -44,7 +37,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Video List | Spam Alert System</title>
+        <title>Video List | Sophia AI SaaS System</title>
       </Head>
       <Box
         component="main"
@@ -54,71 +47,29 @@ const Page = () => {
         }}
       >
         <Container maxWidth="xl">
-          <Stack spacing={3}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              spacing={4}
-            >
-              <Stack spacing={1}>
-                <Typography variant="h4">
-                  Major Threads from Companies
-                </Typography>
-                <Stack
-                  alignItems="center"
-                  direction="row"
-                  spacing={1}
-                >
-                  <Button
-                    color="inherit"
-                    startIcon={(
-                      <SvgIcon fontSize="small">
-                        <ArrowUpOnSquareIcon />
-                      </SvgIcon>
-                    )}
-                  >
-                    Import
-                  </Button>
-                  <Button
-                    color="inherit"
-                    startIcon={(
-                      <SvgIcon fontSize="small">
-                        <ArrowDownOnSquareIcon />
-                      </SvgIcon>
-                    )}
-                  >
-                    Export
-                  </Button>
-                </Stack>
-              </Stack>
-              <div>
-                <Button
-                  startIcon={(
-                    <SvgIcon fontSize="small">
-                      <PlusIcon />
-                    </SvgIcon>
-                  )}
-                  variant="contained"
-                >
-                  Add
-                </Button>
-              </div>
-            </Stack>
-            <CompaniesSearch />
-            <Stack spacing={3}>
-              {companies.map(company => (
-                <CompanyCard key={company.id} company={company} />
-              ))}
-            </Stack>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <Pagination count={3} size="small" />
-            </Box>
-          </Stack>
+          <Typography variant="h4" gutterBottom>
+            Videos Data in Client
+          </Typography>
+          <Divider sx={{ my: 2 }} />
+          <Grid container spacing={3}>
+            {companies.map(company => (
+              <Grid key={company.id} item xs={12} md={4}>
+                <Paper elevation={3} sx={{ p: 2 }}>
+                <img src={`https://img.youtube.com/vi/${company.unique_id}/hqdefault.jpg`} alt="Video Thumbnail" style={{ width: '100%', borderRadius: '10px', height: '200px' }} />
+                  <Typography variant="h6">{company.video_title}</Typography>
+                  <Typography variant="body1">Published on: {company.publish_date}</Typography>
+                  <Typography variant="body1">Views: {company.views}</Typography>
+                  <Typography variant="body1">Unique ID: {company.unique_id}</Typography>
+                  <Typography variant="body1">Document ID: {company.id}</Typography>
+                  {/* Construct the YouTube video thumbnail URL */}
+                  
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+          <Box mt={4} display="flex" justifyContent="center">
+            <Pagination count={3} size="large" />
+          </Box>
         </Container>
       </Box>
     </>
