@@ -18,14 +18,3 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>Simple Dubbmy Page</div>
-  )
-}
-
-export default page
