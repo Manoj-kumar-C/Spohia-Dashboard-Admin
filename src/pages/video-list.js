@@ -4,6 +4,23 @@ import { Box, Container, Typography, Grid, Paper, Divider, Stack, Pagination } f
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
+// firebase 
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAj2ZbPsNaFY0fV_BvG8FXI20WOSj1HAec",
+  authDomain: "video-ap-3e5fe.firebaseapp.com",
+  projectId: "video-ap-3e5fe",
+  storageBucket: "video-ap-3e5fe.appspot.com",
+  messagingSenderId: "9675704832",
+  appId: "1:9675704832:web:ffc7a76d944fc78584e6e5",
+  measurementId: "G-WNDPESZV29"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 const Page = () => {
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
