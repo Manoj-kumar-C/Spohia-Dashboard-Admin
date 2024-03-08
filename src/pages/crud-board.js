@@ -5,18 +5,16 @@ import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 
 const CrudPage = () => {
   const [formDataCreate, setFormDataCreate] = useState({
-    id: "",
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
+    publish_date: "",
+    unique_id: "",
+    video_title: "",
+    views: ""
   });
   const [formDataUpdate, setFormDataUpdate] = useState({
-    id: "",
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
+    publish_date: "",
+    unique_id: "",
+    video_title: "",
+    views: ""
   });
   const [formDataDelete, setFormDataDelete] = useState({ id: "" });
 
@@ -125,41 +123,33 @@ const CrudPage = () => {
           </Typography>
           <form onSubmit={handleCreateSubmit}>
             <TextField
-              label="ID"
-              name="id"
-              value={formDataCreate.id}
+              label="Publish Date"
+              name="publish_date"
+              value={formDataCreate.publish_date}
               onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
-              label="Name"
-              name="name"
-              value={formDataCreate.name}
+              label="Unique ID"
+              name="unique_id"
+              value={formDataCreate.unique_id}
               onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
-              label="Email"
-              name="email"
-              value={formDataCreate.email}
+              label="Video Title"
+              name="video_title"
+              value={formDataCreate.video_title}
               onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
-              label="Address"
-              name="address"
-              value={formDataCreate.address}
-              onChange={handleCreateInputChange}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Phone"
-              name="phone"
-              value={formDataCreate.phone}
+              label="Views"
+              name="views"
+              value={formDataCreate.views}
               onChange={handleCreateInputChange}
               fullWidth
               margin="normal"
@@ -174,41 +164,33 @@ const CrudPage = () => {
           </Typography>
           <form onSubmit={handleUpdateSubmit}>
             <TextField
-              label="ID"
-              name="id"
-              value={formDataUpdate.id}
+              label="Publish Date"
+              name="publish_date"
+              value={formDataUpdate.publish_date}
               onChange={handleUpdateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
-              label="Name"
-              name="name"
-              value={formDataUpdate.name}
+              label="Unique ID"
+              name="unique_id"
+              value={formDataUpdate.unique_id}
               onChange={handleUpdateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
-              label="Email"
-              name="email"
-              value={formDataUpdate.email}
+              label="Video Title"
+              name="video_title"
+              value={formDataUpdate.video_title}
               onChange={handleUpdateInputChange}
               fullWidth
               margin="normal"
             />
             <TextField
-              label="Address"
-              name="address"
-              value={formDataUpdate.address}
-              onChange={handleUpdateInputChange}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Phone"
-              name="phone"
-              value={formDataUpdate.phone}
+              label="Views"
+              name="views"
+              value={formDataUpdate.views}
               onChange={handleUpdateInputChange}
               fullWidth
               margin="normal"
