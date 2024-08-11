@@ -71,7 +71,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Ai Saas System
+          Login | Spam Alert System
         </title>
       </Head>
       <Box
@@ -144,7 +144,7 @@ const Page = () => {
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     type="email"
-                    
+                    value={formik.values.email}
                   />
                   <TextField
                     error={!!(formik.touched.password && formik.errors.password)}
@@ -155,7 +155,7 @@ const Page = () => {
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     type="password"
-                    
+                    value={formik.values.password}
                   />
                 </Stack>
                 <FormHelperText sx={{ mt: 1 }}>
@@ -179,7 +179,6 @@ const Page = () => {
                 >
                   Continue
                 </Button>
-                {/*
                 <Button
                   fullWidth
                   size="large"
@@ -188,14 +187,13 @@ const Page = () => {
                 >
                   Skip authentication
                 </Button>
-                */}
                 <Alert
                   color="primary"
                   severity="info"
                   sx={{ mt: 3 }}
                 >
                   <div>
-                    {/* You can use <b>demo@devias.io</b> and password <b>Password123!</b> */}
+                    You can use <b>demo@devias.io</b> and password <b>Password123!</b>
                   </div>
                 </Alert>
               </form>
